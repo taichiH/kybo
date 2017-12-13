@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+
 import os
 import time
 from selenium import webdriver
 
 def serch():
-    search_word = "ロックディスタウン"
+    search_word = unicode("ロックディスタウン", "utf-8")
     browser = webdriver.Chrome('./chromedriver')
     browser.get('http://db.netkeiba.com/?pid=horse_top')
     time.sleep(1)
@@ -12,5 +13,5 @@ def serch():
     search_input.send_keys(search_word)
     search_input.submit()
     time.sleep(1)
-    print(browser.current_url)
+    
     return browser.current_url

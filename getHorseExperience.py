@@ -1,38 +1,37 @@
+# -*- coding: utf-8 -*-
 import csv
-from urllib.request import urlopen
+import urllib2
 from bs4 import BeautifulSoup
 import sys
 import serchHorse
+import codecs
+import unicodecsv as csv
 
-url = 'http://db.netkeiba.com/horse/2012102013/'
-serchUrl = serchHorse.serch()
-html = urlopen(serchUrl)
-soup = BeautifulSoup(html, 'html.parser')
+def main():
+    serchedUrl = serchHorse.serch()
+    html = urllib2.urlopen(serchedUrl)
+    soup = BeautifulSoup(html, 'html.parser')
+    table = soup.findAll('table',{'class':'db_h_race_results'})[0]
+    rows = table.findAll('tr')
+    csvFile = open('raceInfo.csv', 'w')
+    writer = csv.writer(csvFile)
 
-table = soup.findAll('table',{'class':'db_h_race_results'})[0]
-rows = table.findAll('tr')
+    try:
+        for row in rows:
+            csvRow = []
+            for cell in row.findAll(['td', 'th']):
+                if '\n' in cell.get_text():
+                    tmpText = cell.get_text()
+                    updatedText = tmpText.replace('\n', '')
+                    csvRow.append(updatedText)
+                else:
+                    csvRow.append(cell.get_text())
+            writer.writerow(csvRow)
+    finally:
+        csvFile.close()
 
-csvFile = open('raceInformation.csv', 'wt', newline = '', encoding = 'utf-8')
-writer = csv.writer(csvFile)
-
-hoge = 3
-if (hoge == 3):
-    print(hoge)
-
-try:
-    for row in rows:
-        csvRow = []
-        for cell in row.findAll(['td', 'th']):
-            if '\n' in cell.get_text():
-                tmp_txt = cell.get_text()
-                updated_txt = tmp_txt.replace('\n', '')
-                csvRow.append(updated_txt)
-            else:
-                csvRow.append(cell.get_text())
-        writer.writerow(csvRow)
-finally:
-    csvFile.close()
-
+if __name__ == '__main__':
+    main()
 
 
     
