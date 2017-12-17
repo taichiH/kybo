@@ -4,8 +4,8 @@ import os
 import time
 from selenium import webdriver
 
-def serch():
-    search_word = unicode("ロックディスタウン", "utf-8")
+def serch(name):
+    search_word = name
     browser = webdriver.Chrome('./chromedriver')
     browser.get('http://db.netkeiba.com/?pid=horse_top')
     time.sleep(1)
