@@ -2,42 +2,33 @@
 
 ## How to
 
-python main.py
+python HorseNameCollector.py
+python UrlCollector.py
+python ExperienceCollector.py
 
 ## Python Version
 
 python 2.7
 
-## Flow main.py
 
-```
-args[stirng][string][string] = GetHorseInfomation();
+## Python files
 
-url = Search(String, String, String);
-
-args[String]*23 = GetExperience(url);
-
-make csv
-```
-
-## API
-
-### String String String GetHorseInfomation(void) :
+### HorseNameCollector :
 ```
 http://www.jbis.or.jpから馬の基本情報を取得する。
-return 馬の名前, 父親の名前, 母親の名前
+output 馬の名前, 父親の名前, 母親の名前　形式のCSVファイル
 ```
 
-### String Search(String, String, String) :
+### UrlCollector :
 ```
 http://db.netkeiba.comのレース情報があるURLを取得する。
-return レース情報があるURL
+output レース情報があるURL
 ```
 
-### String Stirng … GetExperience(url) :
+### ExperienceCollector :
 ```
 http://db.netkeiba.comからレース情報を取得する。
-return 23のレース結果のデータ
+output 23のレース結果のデータ
 ```
 
 
