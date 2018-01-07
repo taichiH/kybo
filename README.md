@@ -2,9 +2,11 @@
 
 ## How to
 
+```
 python HorseNameCollector.py
 python UrlCollector.py
 python ExperienceCollector.py
+```
 
 ## Python Version
 
