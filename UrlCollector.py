@@ -1,10 +1,11 @@
-# -*- coding: utf-8 -*-
+1# -*- coding: utf-8 -*-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import unicodecsv as csv
 from time import sleep
 import codecs
 import os
+from selenium.common.exceptions import NoSuchElementException
 
 class UrlCollector:
 
@@ -83,34 +84,43 @@ class UrlCollector:
                      search_input.submit()
                      if browser.current_url == 'http://db.netkeiba.com/':
                          race_table = []
-                         table = browser.find_element_by_class_name('race_table_01')
-                         trs = table.find_elements(By.TAG_NAME, 'tr')
-                         for tr_index in range(0, len(trs)):
-                             tds_table = []
-                             tds = trs[tr_index].find_elements(By.TAG_NAME, 'td')
-                             count = 0
-                             for td_index in range(0, len(tds)):
-                                 if ((count == 1) or (count == 6) or (count == 7)):
-                                     tds_table.append(tds[td_index].text)
-                                 count = count + 1
-                             race_table.append(tds_table)
-                         for row in race_table:
-                             names = ','.join(row)
-                             names = names.split(',')
-                             if names[0] != '':
-                                 if cells[0] == names[0]:
-                                     if (cells[1] == names[1]) or (cells[2] == names[2]):
-                                         browser.find_element_by_link_text(cells[0]).click()
-                                         sleep(5.0)
+
+                         try:
+                             table = browser.find_element_by_class_name('race_table_01')
+                             trs = table.find_elements(By.TAG_NAME, 'tr')
+                             for tr_index in range(0, len(trs)):
+                                 tds_table = []
+                                 tds = trs[tr_index].find_elements(By.TAG_NAME, 'td')
+                                 count = 0
+                                 for td_index in range(0, len(tds)):
+                                     if ((count == 1) or (count == 6) or (count == 7)):
+                                         tds_table.append(tds[td_index].text)
+                                     count = count + 1
+                                 race_table.append(tds_table)
+                             for row in race_table:
+                                 names = ','.join(row)
+                                 names = names.split(',')
+                                 if names[0] != '':
+                                     if cells[0] == names[0]:
+                                         if (cells[1] == names[1]) or (cells[2] == names[2]):
+                                             browser.find_element_by_link_text(cells[0]).click()
+                                             sleep(5.0)
+                                             temp = []
+                                             temp.append(cells[0])
+                                             temp.append(browser.current_url)
+                                             successful_writer.writerow(temp)
+                                     else:
                                          temp = []
                                          temp.append(cells[0])
-                                         temp.append(browser.current_url)
-                                         successful_writer.writerow(temp)
-                                 else:
-                                     temp = []
-                                     temp.append(cells[0])
-                                     failed_writer.writerow(temp)
-                                     break
+                                         failed_writer.writerow(temp)
+                                         break
+
+                         except NoSuchElementException:
+                             temp = []
+                             temp.append(cells[0])
+                             failed_writer.writerow(temp)
+                             pass
+
                      else:
                          temp = []
                          temp.append(cells[0])
