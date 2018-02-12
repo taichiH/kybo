@@ -1,4 +1,4 @@
-1# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import unicodecsv as csv
@@ -6,6 +6,7 @@ from time import sleep
 import codecs
 import os
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 
 class UrlCollector:
 
@@ -77,14 +78,22 @@ class UrlCollector:
                  if row != '\r\n':
                      cells = row.split(',')
                      browser = webdriver.Chrome('./../chromedriver')
-                     browser.get('http://db.netkeiba.com/?pid=horse_top')
+                     try:
+                         browser.get('http://db.netkeiba.com/?pid=horse_top')
+                     except TimeoutException:
+                         browser.refresh()
+                         pass
                      sleep(5.0)
-                     search_input = browser.find_element_by_css_selector('.field')
-                     search_input.send_keys(cells[0])
-                     search_input.submit()
+                     try:
+                         search_input = browser.find_element_by_css_selector('.field')
+                         search_input.send_keys(cells[0])
+                         search_input.submit()
+                     except TimeoutException:
+                         browser.refresh()
+                         pass
+                     sleep(5.0)
                      if browser.current_url == 'http://db.netkeiba.com/':
                          race_table = []
-
                          try:
                              table = browser.find_element_by_class_name('race_table_01')
                              trs = table.find_elements(By.TAG_NAME, 'tr')
@@ -103,7 +112,11 @@ class UrlCollector:
                                  if names[0] != '':
                                      if cells[0] == names[0]:
                                          if (cells[1] == names[1]) or (cells[2] == names[2]):
-                                             browser.find_element_by_link_text(cells[0]).click()
+                                             try:
+                                                 browser.find_element_by_link_text(cells[0]).click()
+                                             except TimeoutException:
+                                                 browser.refresh()
+                                                 pass
                                              sleep(5.0)
                                              temp = []
                                              temp.append(cells[0])
@@ -126,7 +139,7 @@ class UrlCollector:
                          temp.append(cells[0])
                          temp.append(browser.current_url)
                          successful_writer.writerow(temp)
-                     sleep(5.0)
+                     sleep(6.0)
                      browser.close()
 
          csv_file.close()
