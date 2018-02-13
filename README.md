@@ -33,6 +33,11 @@ http://db.netkeiba.comからレース情報を取得する。
 output 23のレース結果のデータ
 ```
 
+## Bugs
+```
+HorseNameCollector から出力される馬名に地域名がついている。
+例) (USA), (AUS), (FR)
+```
 
 
 
