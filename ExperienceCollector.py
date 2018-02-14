@@ -78,6 +78,7 @@ class ExperienceCollector:
                  try:
                      table = soup.find('table',{'class':'db_h_race_results'})
                      rows = table.find_all('tr')
+                     rows.remove(rows[0])
                      for row in rows:
                          csv_row = []
                          for cell in row.findAll(['td', 'th']):
