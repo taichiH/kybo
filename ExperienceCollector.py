@@ -81,13 +81,32 @@ class ExperienceCollector:
                      rows.remove(rows[0])
                      for row in rows:
                          csv_row = []
+                         result = 0
+                         count = 0
                          csv_row.append(name)
                          for cell in row.findAll(['td', 'th']):
-                             if '\n' in cell.get_text():
-                                 text = cell.get_text().replace('\n', '')
-                                 csv_row.append(text)
-                             else:
-                                 csv_row.append(cell.get_text())
+                             if count == 2 \
+                             or count == 9 \
+                             or count == 10 \
+                             or count == 12 \
+                             or count == 13 \
+                             or count == 14 \
+                             or count == 15 \
+                             or count == 23:
+                                 if '\n' in cell.get_text():
+                                     text = cell.get_text().replace('\n', '')
+                                     csv_row.append(text)
+                                 else:
+                                     csv_row.append(cell.get_text())
+                             elif count == 11:
+                                 if cell.get_text() == '1' \
+                                 or cell.get_text() == '2' \
+                                 or cell.get_text() == '3':
+                                     result = 1
+                                 else:
+                                     result = 0
+                             count = count + 1
+                         csv_row.append(result)
                          writer.writerow(csv_row)
                  except:
                      print name,url
