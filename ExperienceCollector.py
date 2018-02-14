@@ -81,6 +81,7 @@ class ExperienceCollector:
                      rows.remove(rows[0])
                      for row in rows:
                          csv_row = []
+                         csv_row.append(name)
                          for cell in row.findAll(['td', 'th']):
                              if '\n' in cell.get_text():
                                  text = cell.get_text().replace('\n', '')
