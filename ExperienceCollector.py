@@ -9,6 +9,17 @@ import unicodecsv as csv
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 
+class Feature:
+    Weather = 2
+    Odds = 9
+    Popularity = 10
+    DestinationOrder = 11
+    Horseman = 12
+    HorsemanWeight = 13
+    Distance = 14
+    CourseStatus = 15
+    HorseWeight = 23
+
 class ExperienceCollector:
 
     def collect(self):
@@ -82,32 +93,33 @@ class ExperienceCollector:
                      for row in rows:
                          csv_row = []
                          result = 0
-                         count = 0
+                         feature = 0
                          csv_row.append(name)
                          for cell in row.findAll(['td', 'th']):
-                             if count == 2 \
-                             or count == 9 \
-                             or count == 10 \
-                             or count == 12 \
-                             or count == 13 \
-                             or count == 14 \
-                             or count == 15 \
-                             or count == 23:
+                             if feature == Feature.Weather \
+                             or feature == Feature.Odds \
+                             or feature == Feature.Popularity \
+                             or feature == Feature.Horseman \
+                             or feature == Feature.HorsemanWeight \
+                             or feature == Feature.Distance \
+                             or feature == Feature.CourseStatus \
+                             or feature == Feature.HorseWeight:
                                  if '\n' in cell.get_text():
                                      text = cell.get_text().replace('\n', '')
                                      csv_row.append(text)
                                  else:
                                      csv_row.append(cell.get_text())
-                             elif count == 11:
+                             elif feature == Feature.DestinationOrder:
                                  if cell.get_text() == '1' \
                                  or cell.get_text() == '2' \
                                  or cell.get_text() == '3':
                                      result = 1
                                  else:
                                      result = 0
-                             count = count + 1
+                             feature = feature + 1
                          csv_row.append(result)
-                         writer.writerow(csv_row)
+                         if u' ' not in csv_row:
+                             writer.writerow(csv_row)
                  except:
                      print name,url
                      pass
