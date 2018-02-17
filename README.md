@@ -30,7 +30,16 @@ output レース情報があるURL
 ### ExperienceCollector :
 ```
 http://db.netkeiba.comからレース情報を取得する。
-output 23のレース結果のデータ
+output  以下のCSVファイル
+  Weather
+  Odds
+  Popularity
+  Horseman
+  HorsemanWeight
+  Distance
+  CourseStatus
+  HorseWeight
+  DestinationOrder
 ```
 
 ## Bugs
