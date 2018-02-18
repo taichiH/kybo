@@ -6,6 +6,8 @@
 python HorseNameCollector.py
 python UrlCollector.py
 python ExperienceCollector.py
+cat HorseExperience/*.csv > HorseExperience/INPUT.csv
+python RandamForest.py
 ```
 
 ## Python Version
@@ -48,6 +50,12 @@ HorseNameCollector から出力される馬名に地域名がついている。
 例) (USA), (AUS), (FR)
 ```
 
-
+## Accuracy
+```
+2018/2/18
+training data: 316927
+test data: 79232
+accuracy: 23.784824298227882
+```
 
 
