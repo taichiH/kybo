@@ -56,6 +56,11 @@ HorseNameCollector から出力される馬名に地域名がついている。
 training data: 316927
 test data: 79232
 accuracy: 23.784824298227882
+
+2018/2/19
+training data: 316927
+test data: 79232
+accuracy: 26.63166064807594
 ```
 
 
