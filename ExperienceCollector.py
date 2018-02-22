@@ -78,7 +78,7 @@ class ExperienceCollector:
          reader = csv.reader(csv_file)
 
          if os.path.exists('HorseExperience') == False:
-            os.mkdir('HorseExperience')
+            os.mkdir('HorseExperienceTwo')
          experience_csv_file = open('HorseExperienceTwo/' + csv_file_name[index], 'w')
          writer = csv.writer(experience_csv_file)
 
