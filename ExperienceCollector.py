@@ -77,7 +77,7 @@ class ExperienceCollector:
          csv_file = codecs.open('HorseUrl/Successful/' + csv_file_name[index], 'r', 'utf-8')
          reader = csv.reader(csv_file)
 
-         if os.path.exists('HorseExperience') == False:
+         if os.path.exists('HorseExperienceTwo') == False:
             os.mkdir('HorseExperienceTwo')
          experience_csv_file = open('HorseExperienceTwo/' + csv_file_name[index], 'w')
          writer = csv.writer(experience_csv_file)
@@ -127,14 +127,15 @@ class ExperienceCollector:
                               csv_row.append(cell.get_text())
                         if feature == Feature.HorseWeight:
                            diff_weight = re.search(r'\(.*\)', cell.get_text())
-                           weight = cell.get_text()[:diff_weight.start()]
-                           csv_row.append(weight)
-                           text = diff_weight.group()
-                           text = text.replace('(', '')
-                           text = text.replace(')', '')
-                           if '\n' in text:
-                              text = text.replace('\n', '')
-                           csv_row.append(text)
+                           if diff_weight != None:
+                              weight = cell.get_text()[:diff_weight.start()]
+                              csv_row.append(weight)
+                              text = diff_weight.group()
+                              text = text.replace('(', '')
+                              text = text.replace(')', '')
+                              if '\n' in text:
+                                 text = text.replace('\n', '')
+                              csv_row.append(text)
                         if feature == Feature.Distance:
                            text = cell.get_text()[1:]
                            if '\n' in text:
