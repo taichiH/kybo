@@ -9,8 +9,9 @@ order_data = df['order']
 feature_data  = df.drop('order', axis = 1)
 
 label_encoder = preprocessing.LabelEncoder()
-for label in ['name', 'weather', 'odds', 'popularity', 'horseman',\
-  'horseman_weight', 'distance', 'course_status', 'horse_weight']:
+for label in ['name', 'age', 'evaluation', 'venue', 'race_name', 'heads', 'horsenumber', \
+              'popularity', 'horseman', 'distance', 'course_status', 'horse_weight', \
+              'horse_weight_ratio', 'winning_percentage']:
   feature_data[label] = label_encoder.fit_transform(feature_data[label])
 
 (train_feature_data, test_feature_data, train_order_data, test_order_data) = train_test_split(feature_data, order_data, test_size = 0.1, shuffle = True)
