@@ -1,3 +1,4 @@
+name,age,evaluation,venue,race_name,heads,horsenumber,popularity,horseman,distance,course_status,horse_weight,horse_weight_ratio,winning_percentage,order
 アイアンクロー,3,3.50,5阪神6,朝日フューチュリティ(G1),16,13,16,酒井学,1600,良,436,+8,0.6,0
 アイアンクロー,3,3.50,2小倉12,小倉2歳S(G3),18,14,5,浜中俊,1200,良,430,+4,0.6,1
 アイオシルケン,6,0.00,5京都8,ラジオN杯京都2歳S(G3),8,8,7,和田竜二,2000,稍,464,0,0.263157894737,0
