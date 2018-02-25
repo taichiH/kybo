@@ -6,7 +6,7 @@
 python HorseNameCollector.py
 python UrlCollector.py
 python ExperienceCollector.py
-cat HorseExperience<version>/*.csv > INPUT.csv
+cat HorseExperience<version>/*.csv > TRAIN.csv
 python RandamForest.py
 ```
 
