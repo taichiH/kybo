@@ -3,11 +3,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import preprocessing
 
-labels = ['name', 'age', 'evaluation', 'venue', 'race_name', 'heads', 'horsenumber', \
-              'popularity', 'horseman', 'distance', 'course_status', 'horse_weight', \
-              'horse_weight_ratio', 'winning_percentage']
+labels = ['horse_name', 'evaluation', 'venue', 'race_name', 'horse_heads', 'horse_number', \
+              'popularity', 'jockey', 'jockey_winning_percentage', 'distance', 'horse_weight', \
+              'horse_weight_diff', 'winning_percentage']
 
-train_df = pd.read_csv('TRAIN.csv', low_memory = False)
+train_df = pd.read_csv('TrainData.csv', low_memory = False)
 train_order_data = train_df['order']
 train_feature_data  = train_df.drop('order', axis = 1)
 label_encoder = preprocessing.LabelEncoder()
@@ -15,7 +15,7 @@ for label in labels:
 	train_feature_data[label] = label_encoder.fit_transform(train_feature_data[label])
 
 
-test_feature_data = pd.read_csv('TEST.csv', low_memory = False)
+test_feature_data = pd.read_csv('TestData.csv', low_memory = False)
 names = list(test_feature_data['name'].values.flatten())
 label_encoder = preprocessing.LabelEncoder()
 for label in labels:
