@@ -1,4 +1,4 @@
-name,age,evaluation,venue,race_name,heads,horsenumber,popularity,horseman,distance,course_status,horse_weight,horse_weight_ratio,winning_percentage
+horse_name,evaluation,venue,race_name,horse_heads,horse_number,popularity,jockey,jockey_winning_percentage,distance,horse_weight,horse_weight_diff,winning_percentage,order
 ニシノラッシュ,6,3.13,1阪神2,阪急杯(G3),18,1,11,幸英明,1400,良,504,+2,0.526315789474
 シュウジ,5,3.17,1阪神2,阪急杯(G3),18,2,5,福永祐一,1400,良,502,-2,0.421052631579
 ミッキーラブソング,7,3.40,1阪神2,阪急杯(G3),18,3,13,松山弘平,1400,良,464,-2,0.352941176471
