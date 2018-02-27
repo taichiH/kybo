@@ -6,7 +6,6 @@
 python HorseNameCollector.py
 python UrlCollector.py
 python ExperienceCollector.py
-cat HorseExperience<version>/*.csv > TRAIN.csv
 python RandamForest.py
 ```
 
@@ -32,16 +31,7 @@ output レース情報があるURL
 ### ExperienceCollector :
 ```
 http://db.netkeiba.comからレース情報を取得する。
-output  以下のCSVファイル
-  Weather
-  Odds
-  Popularity
-  Horseman
-  HorsemanWeight
-  Distance
-  CourseStatus
-  HorseWeight
-  DestinationOrder
+output  特徴量のCSVファイル
 ```
 
 ## Bugs
