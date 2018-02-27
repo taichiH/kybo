@@ -16,7 +16,7 @@ for label in labels:
 
 
 test_feature_data = pd.read_csv('TestData.csv', low_memory = False)
-names = list(test_feature_data['name'].values.flatten())
+names = list(test_feature_data['horse_name'].values.flatten())
 label_encoder = preprocessing.LabelEncoder()
 for label in labels:
 	test_feature_data[label] = label_encoder.fit_transform(test_feature_data[label])
