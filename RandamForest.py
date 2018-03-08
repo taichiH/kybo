@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import preprocessing
+from collections import Counter
 
 labels = ['horse_name', 'evaluation', 'venue', 'race_name', 'horse_heads', 'horse_number', \
               'popularity', 'jockey', 'jockey_winning_percentage', 'distance', 'horse_weight', \
@@ -25,32 +26,32 @@ print 'Training Data: ' + str(train_feature_data.shape[0])
 print 'Test Data: ' + str(test_feature_data.shape[0]) + '\n'
 
 random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 50, n_jobs = 2)
-random_forest.fit(train_feature_data, train_order_data)
 
-feature_importances = random_forest.feature_importances_
-if len(labels) == len(feature_importances):
-	for index in range(len(labels)):
-		print str(labels[index]) + ' : ' + str(round(feature_importances[index] * 100, 2)) + '[%]'
+# feature_importances = random_forest.feature_importances_
+# if len(labels) == len(feature_importances):
+# 	for index in range(len(labels)):
+# 		print str(labels[index]) + ' : ' + str(round(feature_importances[index] * 100, 2)) + '[%]'
+#
+# print '\n'
 
-print '\n'
+prediction_times = 2
+orders_dictionary = {}
 
-COUNTER = 1
-predicts_list = []
-average_predicts_list = []
-for index in range(COUNTER):
+for index in range(prediction_times):
+	random_forest.fit(train_feature_data, train_order_data)
 	predicts = random_forest.predict(test_feature_data)
-	predicts_list.append(predicts)
+	if len(predicts) == len(names):
+		predict_dictionary = {}
+		for name_index in range(len(names)):
+			predict_dictionary[names[name_index]] = predicts[name_index]
+		order_index = 1
+		for name, predict in sorted(predict_dictionary.items(), key = lambda x:-x[1]):
+			if orders_dictionary.has_key(name) == False:
+				orders_dictionary[name] = []
+			orders_dictionary[name].append(order_index)
+			order_index += 1
 
-for names_index in range(len(names)):
-	average_predict = 0
-	for index in range(len(predicts_list)):
-		average_predict = average_predict + predicts_list[index][names_index]
-	average_predicts_list.append(average_predict / COUNTER)
-
-predict_dict = {}
-if len(names) == len(average_predicts_list):
-	for index in range(len(names)):
-		predict_dict[str(names[index])] = round(average_predicts_list[index] * 100, 2)
-
-for name, predict in sorted(predict_dict.items(), key = lambda x:-x[1]):
-    print name + ' : ' + str(predict) + '[%]'
+for name, orders in orders_dictionary.items():
+	if (1 in orders) or (2 in orders) or (3 in orders):
+		print name
+		print Counter(orders)
