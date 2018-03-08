@@ -30,11 +30,11 @@ random_forest.fit(train_feature_data, train_order_data)
 feature_importances = random_forest.feature_importances_
 if len(labels) == len(feature_importances):
 	for index in range(len(labels)):
-		print str(labels[index]) + ' : ' + str(round(feature_importances[index] * 100,2)) + '[%]'
+		print str(labels[index]) + ' : ' + str(round(feature_importances[index] * 100, 2)) + '[%]'
 
 print '\n'
 
-COUNTER = 10
+COUNTER = 1
 predicts_list = []
 average_predicts_list = []
 for index in range(COUNTER):
@@ -47,6 +47,10 @@ for names_index in range(len(names)):
 		average_predict = average_predict + predicts_list[index][names_index]
 	average_predicts_list.append(average_predict / COUNTER)
 
+predict_dict = {}
 if len(names) == len(average_predicts_list):
 	for index in range(len(names)):
-		print str(names[index]) + ' : ' + str(round(predicts[index] * 100,2)) + '[%]'
+		predict_dict[str(names[index])] = round(average_predicts_list[index] * 100, 2)
+
+for name, predict in sorted(predict_dict.items(), key = lambda x:-x[1]):
+    print name + ' : ' + str(predict) + '[%]'
