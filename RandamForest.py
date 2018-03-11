@@ -34,8 +34,8 @@ random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 50, n_jobs
 #
 # print '\n'
 
-prediction_times = 2
-orders_dictionary = {}
+prediction_times = 10
+order_score_dictionary = {}
 
 for index in range(prediction_times):
 	random_forest.fit(train_feature_data, train_order_data)
@@ -46,12 +46,17 @@ for index in range(prediction_times):
 			predict_dictionary[names[name_index]] = predicts[name_index]
 		order_index = 1
 		for name, predict in sorted(predict_dictionary.items(), key = lambda x:-x[1]):
-			if orders_dictionary.has_key(name) == False:
-				orders_dictionary[name] = []
-			orders_dictionary[name].append(order_index)
+			if order_score_dictionary.has_key(name) == False:
+				order_score_dictionary[name] = []
+			order_score_dictionary[name].append(len(names) - order_index)
 			order_index += 1
 
-for name, orders in orders_dictionary.items():
-	if (1 in orders) or (2 in orders) or (3 in orders):
-		print name
-		print Counter(orders)
+for name, orders in order_score_dictionary.items():
+	total_order_score = 0
+	for index in range(len(orders)):
+		total_order_score += orders[index]
+	del order_score_dictionary[name]
+	order_score_dictionary[name] = total_order_score
+
+for name, score in sorted(order_score_dictionary.items(), key = lambda x:-x[1]):
+	print name + ' : ' + str((score / prediction_times) * 100 / (len(names) - 1)) + '[%]'
