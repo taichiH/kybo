@@ -77,7 +77,7 @@ class UrlCollector:
              for row in csv_file:
                  if row != '\r\n':
                      cells = row.split(',')
-                     browser = webdriver.Chrome('./../chromedriver')
+                     browser = webdriver.Chrome('./../../chromedriver')
                      try:
                          browser.get('http://db.netkeiba.com/?pid=horse_top')
                      except TimeoutException:
