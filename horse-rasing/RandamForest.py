@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 from sklearn import preprocessing
 from collections import Counter
 
@@ -36,7 +37,22 @@ test_feature_data_frame = category_data_frame.join(numeric_data_frame, how='oute
 print 'Training Data: ' + str(train_feature_data_frame.shape[0])
 print 'Test Data: ' + str(test_feature_data_frame.shape[0]) + '\n'
 
-random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 50, n_jobs = 2)
+# parameters = {
+# 	"max_depth": [3, 5, 10, 15, 20],
+# 	"n_estimators":[50, 100, 150, 200, 250, 300],
+# 	"min_samples_split": [5, 10, 30, 50, 100],
+# 	"min_samples_leaf": [5, 10, 30, 50, 100],
+# }
+#
+# random_forest = GridSearchCV(RandomForestClassifier(), parameters)
+# random_forest.fit(train_feature_data_frame, train_order_data_frame)
+# accuracy = random_forest.score(train_feature_data, train_order_data)
+#
+# print 'Accuracy: ' + str(accuracy * 100)
+# print 'Best Estimator: '
+# print random_forest.best_params_
+
+random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 10)
 
 prediction_times = 1
 order_score_dictionary = {}
