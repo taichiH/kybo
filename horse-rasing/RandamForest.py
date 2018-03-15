@@ -50,10 +50,10 @@ print 'Test Data: ' + str(test_feature_data_frame.shape[0]) + '\n'
 # print 'Accuracy: '
 # print random_forest.score(train_feature_data, train_order_data)
 
-# print 'Best Estimator: '
+# print 'Best Parameters: '
 # print random_forest.best_params_
 
-# print 'Feature Estimator: '
+# print 'Feature Importances: '
 # print random_forest.feature_importances_
 
 random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 10)
