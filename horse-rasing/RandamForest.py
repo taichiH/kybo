@@ -1,10 +1,7 @@
-import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn import preprocessing
-from collections import Counter
 
 category_labels = ['horse_name', 'venue', 'race_name', 'jockey']
 numeric_labels = ['evaluation', 'horse_heads', 'horse_number', \
