@@ -43,14 +43,18 @@ print 'Test Data: ' + str(test_feature_data_frame.shape[0]) + '\n'
 # 	"min_samples_split": [5, 10, 30, 50, 100],
 # 	"min_samples_leaf": [5, 10, 30, 50, 100],
 # }
-#
+
 # random_forest = GridSearchCV(RandomForestClassifier(), parameters)
 # random_forest.fit(train_feature_data_frame, train_order_data_frame)
-# accuracy = random_forest.score(train_feature_data, train_order_data)
-#
-# print 'Accuracy: ' + str(accuracy * 100)
+
+# print 'Accuracy: '
+# print random_forest.score(train_feature_data, train_order_data)
+
 # print 'Best Estimator: '
 # print random_forest.best_params_
+
+# print 'Feature Estimator: '
+# print random_forest.feature_importances_
 
 random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 10)
 
