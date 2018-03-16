@@ -53,7 +53,7 @@ print 'Test Data: ' + str(test_feature_data_frame.shape[0]) + '\n'
 # print 'Feature Importances: '
 # print random_forest.feature_importances_
 
-random_forest = RandomForestRegressor(n_estimators = 210, max_depth = 10)
+random_forest = RandomForestClassifier(min_samples_split = 50, n_estimators = 200, max_depth = 5, min_samples_leaf = 100)
 
 prediction_times = 1
 order_score_dictionary = {}
