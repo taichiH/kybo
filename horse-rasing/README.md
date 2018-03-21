@@ -6,6 +6,7 @@
 python HorseNameCollector.py
 python UrlCollector.py
 python ExperienceCollector.py
+python ExperienceParser.py
 python RandamForest.py
 ```
 
@@ -34,8 +35,8 @@ http://db.netkeiba.comからレース情報を取得する。
 output  特徴量のCSVファイル
 ```
 
-## Bugs
+### ExperienceParser :
 ```
-HorseNameCollector から出力される馬名に地域名がついている。
-例) (USA), (AUS), (FR)
+特徴量のCSVファイルをパースする。
+output  Train.csv
 ```
