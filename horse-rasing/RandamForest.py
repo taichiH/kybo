@@ -35,25 +35,26 @@ print 'Training Data: ' + str(train_feature_data_frame.shape[0])
 print 'Test Data: ' + str(test_feature_data_frame.shape[0]) + '\n'
 
 # parameters = {
-# 	"max_depth": [3, 5, 10, 15, 20],
-# 	"n_estimators":[50, 100, 150, 200, 250, 300],
-# 	"min_samples_split": [5, 10, 30, 50, 100],
-# 	"min_samples_leaf": [5, 10, 30, 50, 100],
+# 	"max_depth": [],
+# 	"n_estimators":[],
+# 	"min_samples_split": [],
+# 	"min_samples_leaf": [],
 # }
 
 # random_forest = GridSearchCV(RandomForestClassifier(), parameters)
 # random_forest.fit(train_feature_data_frame, train_order_data_frame)
-
-# print 'Accuracy: '
-# print random_forest.score(train_feature_data, train_order_data)
-
+#
 # print 'Best Parameters: '
 # print random_forest.best_params_
+#
+# print 'Accuracy: '
+# print random_forest.score(train_feature_data_frame, train_order_data_frame)
 
-# print 'Feature Importances: '
-# print random_forest.feature_importances_
+random_forest = RandomForestClassifier(min_samples_split = 49, n_estimators = 225, max_depth = 7, min_samples_leaf = 86)
 
-random_forest = RandomForestClassifier(min_samples_split = 50, n_estimators = 200, max_depth = 5, min_samples_leaf = 100)
+print 'Feature Importances: '
+random_forest.fit(train_feature_data_frame, train_order_data_frame)
+print random_forest.feature_importances_
 
 prediction_times = 1
 order_score_dictionary = {}
