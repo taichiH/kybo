@@ -77,9 +77,9 @@ class ExperienceCollector:
          csv_file = codecs.open('HorseUrl/Successful/' + csv_file_name[index], 'r', 'utf-8')
          reader = csv.reader(csv_file)
 
-         if os.path.exists('HorseExperienceTwo') == False:
-            os.mkdir('HorseExperienceTwo')
-         experience_csv_file = open('HorseExperienceTwo/' + csv_file_name[index], 'w')
+         if os.path.exists('HorseExperience') == False:
+            os.mkdir('HorseExperience')
+         experience_csv_file = open('HorseExperience/' + csv_file_name[index], 'w')
          writer = csv.writer(experience_csv_file)
 
          for row in csv_file:
